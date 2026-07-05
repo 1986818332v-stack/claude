@@ -1,0 +1,41 @@
+name: Institutional Perpetual Scanner
+
+on:
+  schedule:
+    # 每30分钟运行一次(UTC时间)。可按需调整,过于频繁可能触发交易所限速。
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}   # 允许手动在 Actions 页面点击 "Run workflow" 触发
+
+permissions:
+  contents: write   # 需要写权限才能把生成的报告 commit 回仓库
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 运行扫描
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python main.py
+
+      - name: 提交报告更新
+        run: |
+          git config user.name "scanner-bot"
+          git config user.email "scanner-bot@users.noreply.github.com"
+          git add reports/
+          git diff --cached --quiet && echo "无变化,跳过提交" || git commit -m "chore: 自动更新扫描报告 $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
