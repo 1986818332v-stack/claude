@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-07-06T19:13:33.605300+00:00",
+  "scan_time": "2026-07-06T23:40:59.118817+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议",
@@ -23,8 +23,8 @@
     },
     "us10y": {
       "available": true,
-      "latest_pct": 4.48,
-      "change_bp_10d": -1.0,
+      "latest_pct": 4.49,
+      "change_bp_10d": 3.0,
       "bias_for_crypto": "中性"
     },
     "btc_etf": {
