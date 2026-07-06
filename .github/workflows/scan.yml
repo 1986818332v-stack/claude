@@ -36,6 +36,6 @@ jobs:
         run: |
           git config user.name "scanner-bot"
           git config user.email "scanner-bot@users.noreply.github.com"
-          git add reports/ docs/
+          git add reports/
           git diff --cached --quiet && echo "无变化,跳过提交" || git commit -m "chore: 自动更新扫描报告 $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
