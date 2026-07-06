@@ -82,6 +82,32 @@ def approximate_cvd(klines: list[dict]) -> list[float]:
     return cvd
 
 
+def dynamic_atr_multiplier(klines: list[dict], base_multiplier: float = 1.5) -> float:
+    """
+    根据 ATR 相对现价的百分比,动态放大止损缓冲倍数。
+    SMC止损通常卡在结构摆动点/OB边缘,但山寨币(如DOGE、SOL)波动率高时,
+    插针很容易刚好扫掉这个"刚刚好"的止损。ATR%越高,说明这个品种本身波动
+    就更剧烈,给它更大的缓冲空间,减少被随机插针扫损的概率。
+
+    经验分档(可按需调整):
+    - ATR% < 0.5%  (低波动,比如BTC平静期): 用基础倍数
+    - 0.5% ~ 1.2%  (中等波动): 基础倍数 * 1.2
+    - > 1.2%       (高波动,常见于山寨币剧烈行情): 基础倍数 * 1.5
+    """
+    if not klines:
+        return base_multiplier
+    a = atr(klines, period=14)
+    last_price = klines[-1]["close"]
+    if a is None or not last_price:
+        return base_multiplier
+    atr_pct = a / last_price * 100
+    if atr_pct > 1.2:
+        return round(base_multiplier * 1.5, 3)
+    if atr_pct > 0.5:
+        return round(base_multiplier * 1.2, 3)
+    return base_multiplier
+
+
 def linreg_slope(values: list[float]) -> float:
     """简单线性回归斜率,用于判断CVD/价格的短期方向。"""
     n = len(values)

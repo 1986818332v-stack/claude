@@ -71,6 +71,7 @@ def oi_divergence_signal(klines: list[dict], oi_now: float | None, oi_prev_estim
                 "oi_now": oi_now}
 
     oi_change = oi_now - oi_prev_estimate
+    oi_change_pct = (oi_change / oi_prev_estimate * 100) if oi_prev_estimate else None
     # 价涨 + OI增 => 新多头进场,趋势健康(顺势加分)
     # 价涨 + OI减 => 空头平仓驱动上涨,持续性存疑(轻微反向)
     # 价跌 + OI增 => 新空头进场,趋势健康(顺势减分,即偏空)
@@ -86,7 +87,7 @@ def oi_divergence_signal(klines: list[dict], oi_now: float | None, oi_prev_estim
     else:
         score, note = 0.0, "价格/OI变化不明显"
 
-    return {"score": score, "note": note, "oi_change": oi_change}
+    return {"score": score, "note": note, "oi_change": oi_change, "oi_change_pct": oi_change_pct}
 
 
 def spot_perp_signal(spot_klines: list[dict], perp_klines: list[dict]) -> dict:

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>机构级永续合约扫描看板</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background:#0b0f14; color:#e6e6e6; margin:0; padding:24px; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .meta { color:#8a94a6; font-size: 13px; margin-bottom: 20px; }
+  .warning { background:#3a1f1f; border:1px solid #7a3b3b; color:#ffb4b4; padding:12px 16px; border-radius:8px; margin-bottom:20px; }
+  table { width:100%; border-collapse: collapse; margin-top: 16px; }
+  th, td { text-align:left; padding:8px 10px; border-bottom:1px solid #232a35; font-size:14px; }
+  th { color:#8a94a6; font-weight:500; }
+  .long { color:#3fd17d; }
+  .short { color:#ff5d6c; }
+  .neutral { color:#8a94a6; }
+  canvas { max-height: 420px; }
+  .empty { color:#8a94a6; padding: 40px 0; text-align:center; }
+</style>
+</head>
+<body>
+  <h1>机构级永续合约扫描看板</h1>
+  <div class="meta" id="meta">加载中...</div>
+  <div id="warningBox"></div>
+  <canvas id="scoreChart"></canvas>
+  <table id="resultTable">
+    <thead>
+      <tr><th>标的</th><th>方向</th><th>综合分数</th><th>置信度</th><th>阶段</th><th>交易计划数</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div id="emptyState" class="empty" style="display:none;">暂无数据,等待下一次 GitHub Actions 扫描运行后自动更新。</div>
+
+<script>
+fetch('data.json?_=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('meta').textContent =
+      '扫描时间(UTC): ' + data.scan_time + ' | 标的数: ' + data.items.length;
+
+    if (data.portfolio_warning) {
+      const box = document.getElementById('warningBox');
+      box.innerHTML = '<div class="warning">' + data.portfolio_warning + '</div>';
+    }
+
+    if (!data.items || data.items.length === 0) {
+      document.getElementById('emptyState').style.display = 'block';
+      return;
+    }
+
+    const tbody = document.querySelector('#resultTable tbody');
+    data.items.forEach(item => {
+      const tr = document.createElement('tr');
+      const dirClass = item.direction.includes('多') ? 'long' : (item.direction.includes('空') ? 'short' : 'neutral');
+      tr.innerHTML = `<td>${item.symbol}</td>
+                      <td class="${dirClass}">${item.direction}</td>
+                      <td>${item.score}</td>
+                      <td>${item.confidence}</td>
+                      <td>${item.phase || '-'}</td>
+                      <td>${item.num_plans}</td>`;
+      tbody.appendChild(tr);
+    });
+
+    const ctx = document.getElementById('scoreChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.items.map(i => i.symbol),
+        datasets: [{
+          label: '综合判定分数 (-100 ~ 100)',
+          data: data.items.map(i => i.score),
+          backgroundColor: data.items.map(i => i.score >= 0 ? 'rgba(63,209,125,0.7)' : 'rgba(255,93,108,0.7)'),
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { labels: { color: '#e6e6e6' } } },
+        scales: {
+          x: { ticks: { color: '#8a94a6' }, grid: { color: '#1c222c' } },
+          y: { ticks: { color: '#8a94a6' }, grid: { color: '#1c222c' }, suggestedMin: -100, suggestedMax: 100 }
+        }
+      }
+    });
+  })
+  .catch(() => {
+    document.getElementById('meta').textContent = '尚未生成 data.json(等待第一次 GitHub Actions 运行完成)';
+  });
+</script>
+</body>
+</html>

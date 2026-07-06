@@ -16,17 +16,20 @@ KLINE_LIMIT = 300                    # 每个周期拉取的K线数量,足够计
 # ---------- 权重(全局主控判定 / 100分制,可自行调整) ----------
 # 各模块最终会被归一化到 [-1, 1] 或 [0,1],再乘以下面权重求和
 WEIGHTS = {
-    "multi_tf_resonance": 18,   # 三周期趋势是否共振
-    "ict_smc_structure": 20,    # ICT/SMC 结构信号 (OB/FVG/liquidity sweep/BOS-CHoCH)
-    "price_action_naked_k": 10, # 裸K形态(吞没、insidebar、pinbar等)
-    "funding_rate": 8,          # 资金费率极值/趋势
-    "open_interest": 10,        # OI 变化 vs 价格背离
-    "spot_perp_basis": 8,       # 现货/永续基差、CVD背离
-    "order_book_imbalance": 6,  # 多空盘口失衡(如可用)
-    "news_sentiment": 8,        # Binance公告 + CoinDesk/Cointelegraph 新闻
-    "macro_calendar": 7,        # FOMC/CPI/NFP 临近程度(风险规避,不是方向性信号)
-    "macro_market": 5,          # DXY、美债收益率联动
-    "etf_flow": 0,              # 默认关闭:仅对 BTC/ETH 有意义,由 main.py 针对性启用
+    "multi_tf_resonance": 16,       # 三周期趋势是否共振
+    "ict_smc_structure": 17,        # ICT/SMC 结构信号 (OB/FVG/liquidity sweep/BOS-CHoCH)
+    "price_action_naked_k": 8,      # 裸K形态(吞没、insidebar、pinbar等)
+    "funding_rate": 7,              # 资金费率极值/趋势
+    "open_interest": 9,             # OI 变化 vs 价格背离
+    "spot_perp_basis": 7,           # 现货/永续基差、CVD背离
+    "order_book_imbalance": 5,      # 多空盘口失衡(如可用)
+    "news_sentiment": 6,            # Binance公告 + CoinDesk/Cointelegraph 新闻
+    "macro_calendar": 0,            # 仅用于风险提示,不参与方向打分(权重恒为0)
+    "macro_market": 5,              # DXY、美债收益率联动
+    "etf_flow": 0,                  # 默认关闭:仅对 BTC/ETH 有意义,由 main.py 针对性启用
+    "geopolitical_risk": 5,         # 免费近似:新闻关键词密度代理地缘政治风险(替代付费Trump/X监听)
+    "htf_liquidity_confluence": 8,  # 低周期信号是否与高周期流动性池(PDH/PDL/PWH/PWL)共振
+    "options_skew": 0,              # 默认关闭:仅对 BTC/ETH 有意义(Deribit流动性集中在这两个币),由main.py针对性启用
 }
 
 # ---------- 风险 ----------

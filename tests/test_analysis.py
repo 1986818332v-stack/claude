@@ -116,5 +116,86 @@ class TestVerdictAndPlans(unittest.TestCase):
             self.assertGreaterEqual(plan["risk_reward"], 3.0)
 
 
+class TestVolumeProfile(unittest.TestCase):
+    def test_poc_vah_val(self):
+        from analysis import volume_profile
+        kl = make_trending_klines(n=100)
+        vp = volume_profile.compute_volume_profile(kl)
+        self.assertIsNotNone(vp)
+        self.assertLessEqual(vp["val"], vp["poc"])
+        self.assertLessEqual(vp["poc"], vp["vah"])
+        note = volume_profile.classify_price_vs_profile(kl[-1]["close"], vp)
+        self.assertIsInstance(note, str)
+
+
+class TestLiquidationMap(unittest.TestCase):
+    def test_simulate_clusters(self):
+        from analysis.liquidation_map import simulate_liquidation_clusters
+        result = simulate_liquidation_clusters([100.0, 105.0, 95.0])
+        self.assertIn("long_liquidation_clusters_top3", result)
+        self.assertIn("short_liquidation_clusters_top3", result)
+        self.assertTrue(len(result["long_liquidation_clusters_top3"]) > 0)
+
+
+class TestPhaseClassifier(unittest.TestCase):
+    def test_classify_returns_valid_phase(self):
+        from analysis import phase_classifier
+        kl = make_trending_klines(n=60, drift=0.3)
+        result = phase_classifier.classify_phase(kl, 5.0, ["现货贴水,情绪偏冷"], [])
+        self.assertIn("phase", result)
+
+
+class TestAnomalyRank(unittest.TestCase):
+    def test_history_percentile(self):
+        from analysis.anomaly_rank import update_history_and_get_percentile, cross_sectional_percentile
+        state = {}
+        pct = None
+        for v in [1.0, 2.0, 3.0, 10.0]:
+            pct = update_history_and_get_percentile(state, "BTCUSDT", "oi_change_pct", v)
+        self.assertIsNotNone(pct)
+        self.assertGreaterEqual(pct, 0.0)
+
+        pool = {"BTCUSDT": 10.0, "ETHUSDT": 1.0, "SOLUSDT": 5.0}
+        mp = cross_sectional_percentile(pool, "BTCUSDT")
+        self.assertEqual(mp, 1.0)
+
+
+class TestPortfolioRisk(unittest.TestCase):
+    def test_same_direction_warning(self):
+        from engine.portfolio_risk import analyze_portfolio_risk
+        fake_results = [
+            {"symbol": "BTCUSDT", "verdict": {"direction": "看空"}, "plans": [1]},
+            {"symbol": "ETHUSDT", "verdict": {"direction": "看空"}, "plans": [1]},
+            {"symbol": "SOLUSDT", "verdict": {"direction": "看空"}, "plans": [1]},
+        ]
+        result = analyze_portfolio_risk(fake_results)
+        self.assertIsNotNone(result["warning"])
+
+
+class TestDynamicATR(unittest.TestCase):
+    def test_dynamic_multiplier_bounds(self):
+        kl = make_trending_klines(n=60, noise=5.0)  # 高波动
+        m = indicators.dynamic_atr_multiplier(kl, base_multiplier=1.5)
+        self.assertGreaterEqual(m, 1.5)
+
+
+class TestHtmlTableParser(unittest.TestCase):
+    def test_extract_tables_and_find_row(self):
+        from fetchers.html_table import extract_tables, find_row_containing, last_numeric_cell
+        html = """
+        <table><tr><th>Date</th><th>ARKB</th><th>Total</th></tr>
+        <tr><td>01 Jul</td><td>10</td><td>25</td></tr>
+        <tr><td>Total</td><td>500</td><td>1200</td></tr></table>
+        """
+        tables = extract_tables(html)
+        self.assertEqual(len(tables), 1)
+        numeric_rows = [r for r in tables[0] if last_numeric_cell(r) is not None]
+        self.assertTrue(len(numeric_rows) >= 2)
+        row = find_row_containing(tables, "01 Jul")
+        self.assertIsNotNone(row)
+        val = last_numeric_cell(row)
+        self.assertEqual(val, 25.0)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -9,38 +9,38 @@ import logging
 import time
 from datetime import datetime, timezone
 
-from config import (
-    MAX_SYMBOLS_TO_SCORE, TOP_N_REPORT, TIMEFRAMES,
-)
+from config import MAX_SYMBOLS_TO_SCORE, TOP_N_REPORT, TIMEFRAMES
 from fetchers import binance_futures as bf
 from fetchers import binance_spot as bs
 from fetchers import okx
 from fetchers import news as news_fetcher
 from fetchers import macro_calendar
 from fetchers import macro_market
+from fetchers import deribit
 
 from analysis import multi_timeframe, ict_smc, price_action, microstructure
+from analysis import liquidity_pools, volume_profile, phase_classifier, anomaly_rank
 from analysis.ict_smc import find_swing_points
+from analysis.liquidation_map import simulate_liquidation_clusters
 
 from engine.verdict import compute_master_verdict
 from engine.trade_plan import build_scalp_plan, build_swing_plan
 from engine.state import load_state, save_state
 from engine.report import write_reports
 from engine.notifier import notify_all
+from engine.portfolio_risk import analyze_portfolio_risk
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 logger = logging.getLogger("scanner.main")
+
+OPTIONS_ENABLED_SYMBOLS = {"BTCUSDT": "BTC", "ETHUSDT": "ETH"}
 
 
 def symbol_keywords(symbol: str) -> list[str]:
     base = symbol.replace("USDT", "").lower()
     aliases = {
-        "btc": ["btc", "bitcoin"],
-        "eth": ["eth", "ethereum"],
-        "sol": ["sol", "solana"],
-        "bnb": ["bnb", "binance coin"],
-        "xrp": ["xrp", "ripple"],
-        "doge": ["doge", "dogecoin"],
+        "btc": ["btc", "bitcoin"], "eth": ["eth", "ethereum"], "sol": ["sol", "solana"],
+        "bnb": ["bnb", "binance coin"], "xrp": ["xrp", "ripple"], "doge": ["doge", "dogecoin"],
     }
     return aliases.get(base, [base])
 
@@ -57,7 +57,6 @@ def gather_macro_context() -> dict:
 
 
 def macro_market_score(macro_ctx: dict) -> float | None:
-    """把DXY + 美债收益率趋势合并成一个 [-1,1] 的宏观联动分数。"""
     scores = []
     dxy = macro_ctx.get("dxy", {})
     us10y = macro_ctx.get("us10y", {})
@@ -71,7 +70,8 @@ def macro_market_score(macro_ctx: dict) -> float | None:
     return sum(scores) / len(scores)
 
 
-def analyze_symbol(symbol: str, macro_ctx: dict, all_news: list, prev_state: dict) -> dict | None:
+def analyze_symbol(symbol: str, macro_ctx: dict, all_news: list, geo_risk: dict,
+                    prev_state: dict, oi_change_pct_pool: dict) -> dict | None:
     logger.info("分析 %s ...", symbol)
 
     per_tf_klines = {}
@@ -79,84 +79,118 @@ def analyze_symbol(symbol: str, macro_ctx: dict, all_news: list, prev_state: dic
         kl = bf.get_klines(symbol, tf)
         if kl:
             per_tf_klines[tf] = kl
-        time.sleep(0.1)  # 简单限速,避免触发交易所速率限制
+        time.sleep(0.1)
 
     if "1h" not in per_tf_klines or len(per_tf_klines["1h"]) < 60:
         logger.warning("%s 数据不足,跳过", symbol)
         return None
 
-    # ---- 多周期共振 ----
     resonance = multi_timeframe.resonance_score(per_tf_klines)
-
-    # ---- ICT/SMC (用1h作为主结构周期) ----
     ict_result = ict_smc.analyze(per_tf_klines["1h"])
-
-    # ---- 裸K (用15m,更贴近短线入场时机) ----
     naked_k = price_action.naked_k_score(per_tf_klines.get("15m", per_tf_klines["1h"]))
 
-    # ---- 资金费率 ----
     premium = bf.get_premium_index(symbol)
     current_funding = float(premium["lastFundingRate"]) if premium and "lastFundingRate" in premium else None
     funding_history = bf.get_funding_rate_history(symbol)
     funding_sig = microstructure.funding_rate_signal(current_funding, funding_history)
 
-    # ---- OI 背离(需要跨运行状态) ----
     oi_data = bf.get_open_interest(symbol)
     oi_now = float(oi_data["openInterest"]) if oi_data and "openInterest" in oi_data else None
     oi_prev = prev_state.get(symbol, {}).get("last_oi")
     oi_sig = microstructure.oi_divergence_signal(per_tf_klines["1h"], oi_now, oi_prev)
+    if oi_sig.get("oi_change_pct") is not None:
+        oi_change_pct_pool[symbol] = oi_sig["oi_change_pct"]
 
-    # ---- 现货/永续 基差 + CVD背离 ----
     spot_klines = bs.get_spot_klines(symbol, "1h")
     spot_perp_sig = microstructure.spot_perp_signal(spot_klines, per_tf_klines["1h"])
 
-    # ---- 订单簿失衡(多交易所) ----
     binance_depth = bf.get_order_book(symbol, limit=100)
     okx_depth = okx.get_order_book(symbol)
     obi_sig = microstructure.order_book_imbalance_signal(binance_depth, okx_depth)
 
-    # ---- 新闻情绪 ----
     news_sig = news_fetcher.compute_news_sentiment_score(all_news, symbol_keywords(symbol))
-
-    # ---- 宏观联动 ----
     macro_score = macro_market_score(macro_ctx)
+
+    # ---- 高周期流动性池共振 ----
+    current_price = per_tf_klines["1h"][-1]["close"]
+    htf = liquidity_pools.analyze(symbol, current_price)
+    htf_score = None
+    if htf.get("available"):
+        boost = htf["confluence"]["confidence_boost"]
+        # 共振本身不代表方向,方向沿用ICT/SMC结构的方向,共振只放大/不放大
+        htf_score = boost if ict_result["score"] >= 0 else -boost
+
+    # ---- 期权偏斜(仅BTC/ETH) ----
+    options_score = None
+    options_detail = None
+    if symbol in OPTIONS_ENABLED_SYMBOLS:
+        options_detail = deribit.compute_options_sentiment(OPTIONS_ENABLED_SYMBOLS[symbol])
+        options_score = deribit.options_sentiment_score(options_detail)
 
     signal_scores = {
         "multi_tf_resonance": resonance["score"],
         "ict_smc_structure": ict_result["score"],
         "price_action_naked_k": naked_k["score"],
         "funding_rate": funding_sig.get("score"),
-        "open_interest": oi_sig.get("score") if "score" in oi_sig else None,
+        "open_interest": oi_sig.get("score"),
         "spot_perp_basis": spot_perp_sig.get("score"),
         "order_book_imbalance": obi_sig.get("score"),
         "news_sentiment": news_sig.get("score"),
-        "macro_calendar": None,  # 宏观日历只用于风险提示,不参与方向打分(权重在config中默认置0处理)
+        "macro_calendar": None,
         "macro_market": macro_score,
         "etf_flow": None,
+        "geopolitical_risk": geo_risk.get("score"),
+        "htf_liquidity_confluence": htf_score,
+        "options_skew": options_score,
     }
 
     verdict = compute_master_verdict(signal_scores)
 
-    # ---- 生成交易计划(Line 1 短线 + Line 2 结构性波段) ----
     direction = "long" if verdict["total_score"] > 0 else "short"
-    plans = []
-    if abs(verdict["total_score"]) >= 15:  # 太中性就不给具体入场计划
+    plans, watchlist = [], []
+    if abs(verdict["total_score"]) >= 15:
         scalp = build_scalp_plan(symbol, per_tf_klines.get("15m", []), ict_result["detail"], direction)
         if scalp:
-            plans.append(scalp)
+            (plans if scalp["meets_rr_threshold"] else watchlist).append(scalp)
 
         swings_4h = find_swing_points(per_tf_klines.get("4h", per_tf_klines["1h"]))
         swing = build_swing_plan(symbol, per_tf_klines.get("4h", per_tf_klines["1h"]), swings_4h, direction)
         if swing:
-            plans.append(swing)
+            (plans if swing["meets_rr_threshold"] else watchlist).append(swing)
 
-    # 更新状态供下一轮OI背离对比
+    # ---- 成交量分布 + 阶段识别 + 清算模拟(用于叙事解读,不参与主控打分) ----
+    vp = volume_profile.compute_volume_profile(per_tf_klines["1h"])
+    vp_note = volume_profile.classify_price_vs_profile(current_price, vp) if vp else None
+
+    phase = phase_classifier.classify_phase(
+        per_tf_klines["1h"], oi_sig.get("oi_change_pct"),
+        spot_perp_sig.get("notes", []), naked_k.get("patterns", []),
+    )
+
+    liq_sim = None
+    if vp:
+        liq_sim = simulate_liquidation_clusters([vp["poc"], vp["vah"], vp["val"]])
+
+    # ---- 三维异动排名(自身历史 + 全场,全场部分在main()里第二遍统一补) ----
+    self_pct = None
+    if oi_sig.get("oi_change_pct") is not None:
+        self_pct = anomaly_rank.update_history_and_get_percentile(
+            prev_state, symbol, "oi_change_pct", oi_sig["oi_change_pct"])
+
     prev_state[symbol] = {"last_oi": oi_now, "updated_at": datetime.now(timezone.utc).isoformat()}
 
     return {
         "symbol": symbol,
         "verdict": verdict,
         "plans": plans,
+        "watchlist": watchlist,
+        "phase": phase,
+        "volume_profile": vp,
+        "volume_profile_note": vp_note,
+        "liquidation_simulation": liq_sim,
+        "htf_liquidity": htf,
+        "options_sentiment": options_detail,
+        "anomaly_self_history_pct": self_pct,
         "raw_signals": {
             "resonance": resonance,
             "ict_smc": ict_result,
@@ -184,28 +218,42 @@ def main():
 
     macro_ctx = gather_macro_context()
     all_news = news_fetcher.fetch_all_news()
-    logger.info("拉取到 %d 条新闻/公告", len(all_news))
+    geo_risk = news_fetcher.compute_geopolitical_risk_score(all_news)
+    logger.info("拉取到 %d 条新闻/公告,地缘政治风险等级: %s", len(all_news), geo_risk.get("risk_level"))
 
     results = []
+    oi_change_pct_pool: dict[str, float] = {}
     for sym in top_symbols:
         try:
-            r = analyze_symbol(sym, macro_ctx, all_news, prev_state)
+            r = analyze_symbol(sym, macro_ctx, all_news, geo_risk, prev_state, oi_change_pct_pool)
             if r:
                 results.append(r)
-        except Exception:  # noqa: BLE001 - 单个symbol失败不能拖垮整体扫描
+        except Exception:  # noqa: BLE001
             logger.exception("分析 %s 时出错,已跳过", sym)
 
-    # 按|综合分数|排序,展示最有把握的机会在前面
+    # ---- 第二遍:全场强度排名(需要拿到所有symbol的oi_change_pct后才能算) ----
+    for r in results:
+        sym = r["symbol"]
+        market_pct = anomaly_rank.cross_sectional_percentile(oi_change_pct_pool, sym)
+        r["anomaly_market_pct"] = market_pct
+        r["anomaly_note"] = anomaly_rank.build_anomaly_note(
+            r.get("anomaly_self_history_pct"), market_pct,
+            r["raw_signals"]["open_interest"].get("oi_change"), "OI变化量(张)",
+        )
+
     results.sort(key=lambda r: abs(r["verdict"]["total_score"]), reverse=True)
     top_results = results[:TOP_N_REPORT]
 
-    paths = write_reports(scan_time, macro_ctx, top_results, out_dir="reports")
+    portfolio_risk = analyze_portfolio_risk(top_results)
+
+    paths = write_reports(scan_time, macro_ctx, top_results, portfolio_risk, geo_risk, out_dir="reports")
     logger.info("报告已生成: %s", paths)
 
     save_state(prev_state)
 
-    # 推送摘要(如果配置了 secrets)
     summary_lines = [f"*机构级永续合约扫描* {scan_time}\n"]
+    if portfolio_risk.get("warning"):
+        summary_lines.append(portfolio_risk["warning"])
     for r in top_results[:5]:
         v = r["verdict"]
         summary_lines.append(f"{r['symbol']}: {v['direction']} ({v['total_score']}分, 置信度{v['confidence']})")

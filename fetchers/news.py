@@ -31,6 +31,18 @@ BEARISH_KEYWORDS = [
 ]
 
 
+# 地缘政治/宏观风险关键词(免费方案:只用新闻标题关键词近似,做风险开关式提示,
+# 不追求判断具体涨跌方向,而是"当前是否处于地缘政治风险升温期"。风险升温对加密货币
+# 这类风险资产通常偏空(资金避险撤离),但也可能因短期叙事偏多,因此这里刻意保守,
+# 只在关键词密集出现时给一个较小幅度的分数,不做武断的强方向判断。
+GEOPOLITICAL_RISK_KEYWORDS = [
+    "war", "invasion", "military strike", "airstrike", "missile", "ceasefire",
+    "sanctions", "tariff", "trade war", "conflict escalates", "state of emergency",
+    "martial law", "nuclear", "troops", "border clash",
+    "战争", "军事打击", "导弹", "制裁", "关税", "贸易战", "停火", "冲突升级", "边境冲突",
+]
+
+
 @dataclass
 class NewsItem:
     source: str
@@ -132,3 +144,30 @@ def compute_news_sentiment_score(news_items: list[NewsItem], symbol_keywords: li
 
     normalized = max(-1.0, min(1.0, raw_score / 5.0))
     return {"score": normalized, "matched": matched}
+
+
+def compute_geopolitical_risk_score(news_items: list[NewsItem]) -> dict:
+    """
+    全市场级别的地缘政治风险信号(免费近似方案,替代付费的Truth Social/X实时抓取)。
+    只统计标题中命中地缘政治关键词的条数,命中越多代表当前新闻流里地缘政治议题
+    密度越高,给一个保守的、幅度较小的风险分数(默认偏空,因为历史上突发地缘冲突
+    对风险资产的第一反应几乎总是避险抛售,即便后续可能反弹)。
+    """
+    matched = []
+    for item in news_items:
+        title_lower = item.title.lower()
+        if any(kw.lower() in title_lower for kw in GEOPOLITICAL_RISK_KEYWORDS):
+            matched.append(item)
+
+    if not matched:
+        return {"score": 0.0, "matched": [], "risk_level": "低"}
+
+    density = len(matched)
+    if density >= 5:
+        score, level = -0.5, "高"
+    elif density >= 2:
+        score, level = -0.3, "中"
+    else:
+        score, level = -0.15, "低"
+
+    return {"score": score, "matched": matched, "risk_level": level}

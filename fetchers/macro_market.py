@@ -7,10 +7,10 @@
 from __future__ import annotations
 import csv
 import io
-import re
 
 from config import STOOQ_DXY_CSV, FRED_DGS10_CSV, FARSIDE_BTC_URL, FARSIDE_ETH_URL
 from fetchers.http_client import get_text
+from fetchers.html_table import extract_tables, last_numeric_cell
 
 
 def _parse_stooq_csv(text: str) -> list[dict]:
@@ -76,21 +76,58 @@ def get_us10y_yield_trend() -> dict:
 
 def _parse_farside_table(html: str) -> dict:
     """
-    极简、容错优先的 Farside 表格解析:只尝试抓取"Total"行的最近一次净流入数值(百万美元)。
-    Farside 的 HTML 结构可能随时调整,这里不做强依赖,解析失败就返回 available: False,
-    报告中会明确标注"ETF资金流数据暂不可用",而不是编造数字。
+    健壮版 Farside 表格解析(基于真实DOM结构解析,而非脆弱正则)。
+
+    典型结构:第一行是表头(各ETF代码 + 最后一列 "Total"),之后每行是一个交易日,
+    可能有一行首列是"Total"的全期合计行。策略:
+    1. 取页面里行数最多的表格(大概率是数据主表)
+    2. 表头里找到 "Total" 列 -> 取最近一个数据行的值 = 最近一日净流入
+    3. 找首列含"Total"的行 -> 全期累计净流入(如果存在)
+    4. 任何一步失败都返回 available: False,不编造数字。
     """
-    if not html:
-        return {"available": False}
-    # 尝试用简单正则找到形如 Total ... 的一行里最后一个数字(百万美元, 可能带负号/逗号)
-    match = re.search(r"Total[^\n<]*?(-?[\d,]+\.?\d*)\s*</td>\s*</tr>", html, re.IGNORECASE)
-    if not match:
-        return {"available": False}
-    try:
-        value = float(match.group(1).replace(",", ""))
-        return {"available": True, "latest_total_flow_musd": value}
-    except ValueError:
-        return {"available": False}
+    tables = extract_tables(html)
+    if not tables:
+        return {"available": False, "reason": "页面未解析出任何<table>结构"}
+
+    main_table = max(tables, key=len, default=None)
+    if not main_table or len(main_table) < 2:
+        return {"available": False, "reason": "主表格行数不足"}
+
+    header = [c.strip().lower() for c in main_table[0]]
+    total_col_idx = None
+    for i, cell in enumerate(header):
+        if cell == "total" or cell.endswith("total"):
+            total_col_idx = i
+            break
+
+    result: dict = {"available": False}
+
+    cumulative_row = None
+    for row in main_table[1:]:
+        if row and "total" in row[0].strip().lower():
+            cumulative_row = row
+            break
+    if cumulative_row and total_col_idx is not None and total_col_idx < len(cumulative_row):
+        val = last_numeric_cell([cumulative_row[total_col_idx]])
+        if val is not None:
+            result["cumulative_total_flow_musd"] = val
+            result["available"] = True
+
+    if total_col_idx is not None:
+        for row in reversed(main_table[1:]):
+            if not row or "total" in row[0].strip().lower():
+                continue
+            if total_col_idx < len(row):
+                val = last_numeric_cell([row[total_col_idx]])
+                if val is not None:
+                    result["latest_day_flow_musd"] = val
+                    result["latest_day_label"] = row[0].strip()
+                    result["available"] = True
+            break
+
+    if not result["available"]:
+        result["reason"] = "解析出表格但未定位到Total列或有效数值,可能是页面结构调整"
+    return result
 
 
 def get_btc_etf_flow() -> dict:

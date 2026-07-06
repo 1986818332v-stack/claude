@@ -9,7 +9,7 @@
 """
 from __future__ import annotations
 from config import MIN_RR, TARGET_RR, ATR_SL_MULTIPLIER
-from analysis.indicators import atr
+from analysis.indicators import atr, dynamic_atr_multiplier
 from analysis.fib_zones import dynamic_fib_zone
 
 
@@ -30,6 +30,7 @@ def build_scalp_plan(symbol: str, klines_15m: list[dict], ict_detail: dict, dire
     a = atr(klines_15m, period=14)
     if a is None:
         return None
+    sl_multiplier = dynamic_atr_multiplier(klines_15m, ATR_SL_MULTIPLIER)
 
     candidates = []
     for ob in ict_detail.get("order_blocks", []):
@@ -47,19 +48,17 @@ def build_scalp_plan(symbol: str, klines_15m: list[dict], ict_detail: dict, dire
     zone_low, zone_high, zone_type = candidates[0]
 
     if direction == "long":
-        stop = zone_low - a * ATR_SL_MULTIPLIER
+        stop = zone_low - a * sl_multiplier
         entry_mid = (zone_low + zone_high) / 2
         target = entry_mid + (entry_mid - stop) * TARGET_RR
         confirm = f"价格进入 {zone_low:.6g} ~ {zone_high:.6g} 区间后,出现一根收盘价高于区间上沿的看涨确认K线,或该区间成交量放大至近20根均量的1.5倍以上"
     else:
-        stop = zone_high + a * ATR_SL_MULTIPLIER
+        stop = zone_high + a * sl_multiplier
         entry_mid = (zone_low + zone_high) / 2
         target = entry_mid - (stop - entry_mid) * TARGET_RR
         confirm = f"价格进入 {zone_low:.6g} ~ {zone_high:.6g} 区间后,出现一根收盘价低于区间下沿的看跌确认K线,或该区间成交量放大至近20根均量的1.5倍以上"
 
     rr = _risk_reward(entry_mid, stop, target)
-    if rr < MIN_RR:
-        return None
 
     return {
         "line": "Line 1 (短线/剥头皮)",
@@ -71,6 +70,8 @@ def build_scalp_plan(symbol: str, klines_15m: list[dict], ict_detail: dict, dire
         "stop_loss": round(stop, 6),
         "target": round(target, 6),
         "risk_reward": round(rr, 2),
+        "meets_rr_threshold": rr >= MIN_RR,
+        "volatility_sl_note": f"已进行波动率止损修正(ATR倍数={sl_multiplier})",
     }
 
 
@@ -85,6 +86,7 @@ def build_swing_plan(symbol: str, klines_4h: list[dict], swings: dict, direction
     a = atr(klines_4h, period=14)
     if a is None:
         return None
+    sl_multiplier = dynamic_atr_multiplier(klines_4h, ATR_SL_MULTIPLIER)
 
     swing_high = swings["highs"][-1][1]
     swing_low = swings["lows"][-1][1]
@@ -96,21 +98,19 @@ def build_swing_plan(symbol: str, klines_4h: list[dict], swings: dict, direction
     entry_mid = (zone_low + zone_high) / 2
 
     if direction == "long":
-        stop = swing_low - a * ATR_SL_MULTIPLIER
+        stop = swing_low - a * sl_multiplier
         target = entry_mid + (entry_mid - stop) * TARGET_RR
         confirm = (f"价格回撤至 {zone_low:.6g} ~ {zone_high:.6g}({fib['volatility_tier']['tier']}波动档位,"
                    f"{fib['retracement_ratios'][0]:.3f}~{fib['retracement_ratios'][1]:.3f}回撤区)后,"
                    f"出现4h级别看涨吞没或长下影线确认K线,且成交量不低于近10根均量")
     else:
-        stop = swing_high + a * ATR_SL_MULTIPLIER
+        stop = swing_high + a * sl_multiplier
         target = entry_mid - (stop - entry_mid) * TARGET_RR
         confirm = (f"价格反弹至 {zone_low:.6g} ~ {zone_high:.6g}({fib['volatility_tier']['tier']}波动档位,"
                    f"{fib['retracement_ratios'][0]:.3f}~{fib['retracement_ratios'][1]:.3f}回撤区)后,"
                    f"出现4h级别看跌吞没或长上影线确认K线,且成交量不低于近10根均量")
 
     rr = _risk_reward(entry_mid, stop, target)
-    if rr < MIN_RR:
-        return None
 
     return {
         "line": "Line 2 (结构性波段)",
@@ -124,4 +124,6 @@ def build_swing_plan(symbol: str, klines_4h: list[dict], swings: dict, direction
         "risk_reward": round(rr, 2),
         "breakout_chase_branch": fib["breakout_chase_branch"],
         "current_price": round(last_price, 6),
+        "meets_rr_threshold": rr >= MIN_RR,
+        "volatility_sl_note": f"已进行波动率止损修正(ATR倍数={sl_multiplier})",
     }
