@@ -87,7 +87,10 @@ def _parse_farside_table(html: str) -> dict:
     """
     tables = extract_tables(html)
     if not tables:
-        return {"available": False, "reason": "页面未解析出任何<table>结构"}
+        html_len = len(html) if html else 0
+        return {"available": False,
+                "reason": f"页面未解析出任何<table>结构(收到HTML长度{html_len}字符,"
+                         f"若长度异常小可能是被反爬机制拦截返回了挑战页,而非真实表格页面)"}
 
     main_table = max(tables, key=len, default=None)
     if not main_table or len(main_table) < 2:

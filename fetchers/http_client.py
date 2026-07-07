@@ -12,7 +12,11 @@ from config import REQUEST_TIMEOUT, USER_AGENT
 logger = logging.getLogger("scanner.http")
 
 _SESSION = requests.Session()
-_SESSION.headers.update({"User-Agent": USER_AGENT})
+_SESSION.headers.update({
+    "User-Agent": USER_AGENT,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+})
 
 
 def get_json(url: str, params: dict | None = None, retries: int = 2, backoff: float = 1.5):

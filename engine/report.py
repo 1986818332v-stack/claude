@@ -15,25 +15,36 @@ def _fmt_num(x):
 
 def _render_plan(plan: dict) -> list[str]:
     lines = []
-    lines.append(f"\n**{plan['line']}** ({plan['zone_type']}, 基于{plan['timeframe_basis']})\n")
+    lines.append(f"\n**{plan['line']}**\n")
     lines.append(f"- 方向: {plan['direction']}\n")
-    lines.append(f"- 入场区间: {_fmt_num(plan['entry_zone'][0])} ~ {_fmt_num(plan['entry_zone'][1])}\n")
+    zone_note = "(兜底方案,未找到明确OB/FVG)" if plan.get("entry_zone_is_fallback") else ""
+    lines.append(f"- 入场区间: {_fmt_num(plan['entry_zone'][0])} ~ {_fmt_num(plan['entry_zone'][1])}"
+                 f" [{plan['zone_type']}]{zone_note}\n")
     lines.append(f"- 确认条件: {plan['confirmation']}\n")
-    lines.append(f"- 止损: {_fmt_num(plan['stop_loss'])}\n")
-    lines.append(f"- 目标: {_fmt_num(plan['target'])}\n")
-    lines.append(f"- 风险回报比: 1 : {plan['risk_reward']}\n")
+    lines.append(f"- 止损: {_fmt_num(plan['stop_loss'])}"
+                 f"(约{plan['stop_loss_pct']}%{'✅落在极致止损区间内' if plan.get('stop_within_target_range') else ''})\n")
+    tp1_note = "(兜底目标,附近未找到明确4H流动性池)" if plan.get("tp1_is_fallback") else "(4H流动性池)"
+    lines.append(f"- TP1: {_fmt_num(plan['tp1'])} {tp1_note} → 盈亏比 1:{plan['tp1_risk_reward']}\n")
+    tp2_note = "(兜底目标,附近未找到明确1D流动性池)" if plan.get("tp2_is_fallback") else "(1D流动性池)"
+    lines.append(f"- TP2: {_fmt_num(plan['tp2'])} {tp2_note} → 盈亏比 1:{plan['tp2_risk_reward']}\n")
+    if plan.get("extreme_rr_achieved"):
+        lines.append(f"- ✅ TP2已达到极致盈亏比目标(≥1:{plan['tp2_risk_reward']})\n")
     if plan.get("volatility_sl_note"):
         lines.append(f"- {plan['volatility_sl_note']}\n")
-    if plan.get("breakout_chase_branch"):
-        lines.append(f"- 备选(突破追单分支): {plan['breakout_chase_branch']['condition']}\n")
     return lines
 
 
 def render_markdown(scan_time: str, macro_ctx: dict, results: list[dict],
-                     portfolio_risk: dict, geo_risk: dict) -> str:
+                     portfolio_risk: dict, geo_risk: dict, trump_headlines: dict | None = None,
+                     weak_market: bool = False) -> str:
     lines = []
     lines.append("# 机构级永续合约扫描报告\n")
     lines.append(f"生成时间(UTC): {scan_time}\n")
+
+    if weak_market:
+        lines.append("\n> ⚠️ **市场整体评分偏低**:本轮全市场没有标的达到高置信度门槛,"
+                     "以下为弱势/震荡背景下的**相对最优局部剧本**(永不空仓策略——"
+                     "总能筛出当前相对最强的方向,但请相应降低仓位、提高确认条件的严格程度)。\n")
 
     if portfolio_risk.get("warning"):
         lines.append(f"\n## 组合风险提示\n\n{portfolio_risk['warning']}\n")
@@ -76,14 +87,23 @@ def render_markdown(scan_time: str, macro_ctx: dict, results: list[dict],
     lines.append("\n> 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实"
                  "而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。\n")
 
+    lines.append(f"\n- 地缘政治风险信号(来源: {geo_risk.get('source','未知')}): "
+                 f"**{geo_risk.get('risk_level','N/A')}**")
+    if geo_risk.get("tone_change") is not None:
+        lines.append(f"(新闻语气变化值: {geo_risk['tone_change']})")
     if geo_risk.get("matched"):
         titles = "; ".join(n.title for n in geo_risk["matched"][:3])
-        lines.append(f"\n- 地缘政治风险信号(免费近似,基于新闻标题关键词密度): "
-                     f"**{geo_risk['risk_level']}**,相关标题示例: {titles}\n")
+        lines.append(f",相关标题示例: {titles}")
+    lines.append("\n")
+
+    if trump_headlines and trump_headlines.get("available") and trump_headlines.get("headlines"):
+        lines.append("\n**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:\n")
+        for h in trump_headlines["headlines"][:5]:
+            lines.append(f"- [{h.get('domain','')}] {h.get('title','')} ({h.get('seen_date','')})\n")
+        lines.append("> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,"
+                     "无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。\n")
     else:
-        lines.append("\n- 地缘政治风险信号: 本轮新闻流中未检测到密集的地缘政治关键词\n")
-    lines.append("> 注:特朗普社交媒体言论监听仍**未启用**(无可靠免费实时API);"
-                 "地缘政治风险已改为新闻关键词密度的免费近似方案(见上)。\n")
+        lines.append("\n- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用\n")
 
     lines.append("\n## 交易计划\n")
     if not results:
@@ -129,12 +149,13 @@ def render_markdown(scan_time: str, macro_ctx: dict, results: list[dict],
             lines.extend(_render_plan(plan))
 
         if r.get("watchlist"):
-            lines.append("\n*以下为未达到最低风险回报比门槛的观察名单(不建议直接入场,仅供参考结构位置):*\n")
+            lines.append("\n*以下方案未达到极致盈亏比目标,但仍是当前可执行的最优结构"
+                         "(已放宽为观察名单展示,而非直接丢弃):*\n")
             for plan in r["watchlist"]:
                 lines.extend(_render_plan(plan))
 
         if not r.get("plans") and not r.get("watchlist"):
-            lines.append("- 暂无可识别的结构化入场区间(结构不够清晰)\n")
+            lines.append("- 暂无可识别的结构化入场区间(数据获取异常,而非市场无机会)\n")
 
         liq = r.get("liquidation_simulation")
         if liq:
@@ -175,9 +196,10 @@ def _build_dashboard_json(scan_time: str, results: list[dict], portfolio_risk: d
 
 
 def write_reports(scan_time: str, macro_ctx: dict, results: list[dict],
-                   portfolio_risk: dict, geo_risk: dict, out_dir: str) -> dict:
+                   portfolio_risk: dict, geo_risk: dict, trump_headlines: dict | None,
+                   weak_market: bool, out_dir: str) -> dict:
     os.makedirs(out_dir, exist_ok=True)
-    md = render_markdown(scan_time, macro_ctx, results, portfolio_risk, geo_risk)
+    md = render_markdown(scan_time, macro_ctx, results, portfolio_risk, geo_risk, trump_headlines, weak_market)
 
     md_path = os.path.join(out_dir, "latest.md")
     json_path = os.path.join(out_dir, "latest.json")

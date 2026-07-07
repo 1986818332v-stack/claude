@@ -9,7 +9,7 @@ import unittest
 
 from analysis import indicators, price_action, ict_smc, multi_timeframe, fib_zones
 from engine.verdict import compute_master_verdict
-from engine.trade_plan import build_scalp_plan, build_swing_plan
+from engine.trade_plan import build_trade_plan
 
 
 def make_trending_klines(n=200, start=100.0, drift=0.15, noise=0.6, seed=42):
@@ -101,19 +101,35 @@ class TestVerdictAndPlans(unittest.TestCase):
         self.assertIn(v["direction"], ["看多", "看空", "偏多", "偏空", "中性/观望"])
         self.assertTrue(len(v["missing_modules"]) > 0)
 
-    def test_scalp_plan_none_when_no_zones(self):
+    def test_trade_plan_always_returns_when_data_present(self):
+        """永不空仓:即使没有明确OB/FVG,也必须兜底返回一个可执行计划,而不是None。"""
         kl = make_trending_klines(n=50)
-        plan = build_scalp_plan("TESTUSDT", kl, {"order_blocks": [], "fair_value_gaps": []}, "long")
-        self.assertIsNone(plan)
+        plan = build_trade_plan("TESTUSDT", kl, {"order_blocks": [], "fair_value_gaps": []}, "long",
+                                swings_4h={"highs": [], "lows": []}, swings_1d={"highs": [], "lows": []},
+                                entry_timeframe_label="15m")
+        self.assertIsNotNone(plan)
+        self.assertTrue(plan["entry_zone_is_fallback"])
+        self.assertTrue(plan["tp1_is_fallback"])
+        self.assertTrue(plan["tp2_is_fallback"])
 
-    def test_swing_plan_structure(self):
+    def test_trade_plan_structure_with_htf_targets(self):
         kl = make_trending_klines(n=150, drift=0.3)
-        swings = ict_smc.find_swing_points(kl)
-        plan = build_swing_plan("TESTUSDT", kl, swings, "long")
-        if plan is not None:
-            self.assertIn("entry_zone", plan)
-            self.assertLessEqual(plan["entry_zone"][0], plan["entry_zone"][1])
-            self.assertGreaterEqual(plan["risk_reward"], 3.0)
+        swings_4h = ict_smc.find_swing_points(kl)
+        plan = build_trade_plan("TESTUSDT", kl, {"order_blocks": [], "fair_value_gaps": []}, "long",
+                                swings_4h=swings_4h, swings_1d={"highs": [], "lows": []},
+                                entry_timeframe_label="15m")
+        self.assertIsNotNone(plan)
+        self.assertIn("entry_zone", plan)
+        self.assertLessEqual(plan["entry_zone"][0], plan["entry_zone"][1])
+        self.assertIn("tp1_risk_reward", plan)
+        self.assertIn("tp2_risk_reward", plan)
+        self.assertGreaterEqual(plan["tp2_risk_reward"], plan["tp1_risk_reward"] - 0.01)
+
+    def test_trade_plan_none_only_when_no_klines(self):
+        plan = build_trade_plan("TESTUSDT", [], {"order_blocks": [], "fair_value_gaps": []}, "long",
+                                swings_4h={"highs": [], "lows": []}, swings_1d={"highs": [], "lows": []},
+                                entry_timeframe_label="15m")
+        self.assertIsNone(plan)
 
 
 class TestVolumeProfile(unittest.TestCase):
