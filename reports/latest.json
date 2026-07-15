@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-07-14T23:38:16.294136+00:00",
+  "scan_time": "2026-07-15T07:30:24.751331+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议",
       "event_datetime_utc_approx": "2026-07-29T14:00:00",
-      "hours_until": 374.0,
+      "hours_until": 350.0,
       "fomc": {
         "start": "2026-07-28",
         "end": "2026-07-29",
         "has_sep_dot_plot": false,
-        "days_until_decision": 15
+        "days_until_decision": 14
       },
       "next_nfp": "2026-08-07",
       "cpi": {
@@ -42,8 +42,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": 0.0,
-    "risk_level": "平稳"
+    "score": -0.3,
+    "risk_level": "中"
   },
   "results": []
 }
