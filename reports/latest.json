@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-07-22T23:48:00.404210+00:00",
+  "scan_time": "2026-07-23T09:14:54.006906+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议",
       "event_datetime_utc_approx": "2026-07-29T14:00:00",
-      "hours_until": 182.0,
+      "hours_until": 158.0,
       "fomc": {
         "start": "2026-07-28",
         "end": "2026-07-29",
         "has_sep_dot_plot": false,
-        "days_until_decision": 7
+        "days_until_decision": 6
       },
       "next_nfp": "2026-08-07",
       "cpi": {
