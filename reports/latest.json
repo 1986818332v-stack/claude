@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-08-03T23:00:38.776292+00:00",
+  "scan_time": "2026-08-04T00:58:45.483581+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
       "event_datetime_utc_approx": "2026-08-07T08:30:00",
-      "hours_until": 104.5,
+      "hours_until": 80.5,
       "fomc": {
         "start": "2026-09-15",
         "end": "2026-09-16",
         "has_sep_dot_plot": true,
-        "days_until_decision": 44
+        "days_until_decision": 43
       },
       "next_nfp": "2026-08-07",
       "cpi": {
@@ -42,8 +42,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": 0.0,
-    "risk_level": "平稳"
+    "score": -0.15,
+    "risk_level": "低"
   },
   "results": []
 }
