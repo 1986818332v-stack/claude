@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-08-14T07:26:31.656108+00:00",
+  "scan_time": "2026-08-14T08:45:35.740418+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
@@ -42,8 +42,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": -0.15,
-    "risk_level": "低"
+    "score": 0.0,
+    "risk_level": "平稳"
   },
   "results": []
 }
