@@ -1,19 +1,19 @@
 {
-  "scan_time": "2026-08-31T22:58:00.066134+00:00",
+  "scan_time": "2026-09-01T01:45:54.781656+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
       "event_datetime_utc_approx": "2026-09-04T08:30:00",
-      "hours_until": 104.5,
+      "hours_until": 80.5,
       "fomc": {
         "start": "2026-09-15",
         "end": "2026-09-16",
         "has_sep_dot_plot": true,
-        "days_until_decision": 16
+        "days_until_decision": 15
       },
       "next_nfp": "2026-09-04",
       "cpi": {
-        "window": "2026-08-10 ~ 2026-08-15",
+        "window": "2026-09-10 ~ 2026-09-15",
         "precise": false,
         "note": "CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充"
       }
