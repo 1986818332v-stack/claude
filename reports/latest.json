@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-09-10T10:45:59.784019+00:00",
+  "scan_time": "2026-09-10T14:52:22.032437+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议(含点阵图)",
@@ -42,8 +42,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": 0.0,
-    "risk_level": "平稳"
+    "score": -0.5,
+    "risk_level": "高"
   },
   "results": []
 }
