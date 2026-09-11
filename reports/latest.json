@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-09-10T23:20:05.954474+00:00",
+  "scan_time": "2026-09-11T01:20:56.396390+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议(含点阵图)",
       "event_datetime_utc_approx": "2026-09-16T14:00:00",
-      "hours_until": 158.0,
+      "hours_until": 134.0,
       "fomc": {
         "start": "2026-09-15",
         "end": "2026-09-16",
         "has_sep_dot_plot": true,
-        "days_until_decision": 6
+        "days_until_decision": 5
       },
       "next_nfp": "2026-10-02",
       "cpi": {
