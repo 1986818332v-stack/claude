@@ -1,5 +1,86 @@
 {
-  "scan_time": "2026-09-22T23:09:23.388648+00:00",
-  "portfolio_warning": null,
-  "items": []
+  "scan_time": "2026-09-23T01:39:14.961696+00:00",
+  "portfolio_warning": "⚠️ 本轮 6/6 个标的同为看多方向(1000SHIBUSDT, APTUSDT, UNIUSDT, BCHUSDT, AKEUSDT, TIAUSDT),高度同质化仓位存在'多头挤压反转'时集中回撤的风险,建议对同板块标的合并计算总风险敞口(而非按每个标的独立的1倍风险叠加),或降低单笔仓位比例。",
+  "items": [
+    {
+      "symbol": "DOGEUSDT",
+      "direction": "偏多",
+      "score": 28.77,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "1000SHIBUSDT",
+      "direction": "偏多",
+      "score": 25.38,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "ARBUSDT",
+      "direction": "偏多",
+      "score": 25.22,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "APTUSDT",
+      "direction": "偏多",
+      "score": 25.17,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "UNIUSDT",
+      "direction": "偏多",
+      "score": 25.14,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "BCHUSDT",
+      "direction": "偏多",
+      "score": 21.9,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "PENGUUSDT",
+      "direction": "偏多",
+      "score": 20.75,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "AKEUSDT",
+      "direction": "偏多",
+      "score": 20.51,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "DASHUSDT",
+      "direction": "偏多",
+      "score": 17.86,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "TIAUSDT",
+      "direction": "偏多",
+      "score": 17.08,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    }
+  ]
 }
