@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-09-23T23:52:01.752735+00:00",
+  "scan_time": "2026-09-24T03:28:24.840171+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
       "event_datetime_utc_approx": "2026-10-02T08:30:00",
-      "hours_until": 224.5,
+      "hours_until": 200.5,
       "fomc": {
         "start": "2026-10-27",
         "end": "2026-10-28",
         "has_sep_dot_plot": false,
-        "days_until_decision": 35
+        "days_until_decision": 34
       },
       "next_nfp": "2026-10-02",
       "cpi": {
