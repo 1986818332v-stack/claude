@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-11T02:03:37.381709+00:00
+生成时间(UTC): 2026-10-11T09:10:20.068108+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 422.0 小时
@@ -11,12 +11,7 @@
 
 - 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Ledger investigates fund losses linked to Southeast Asian reseller, warns users
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [orissapost.com] Trump faces hypocrisy charge over Russian diesel deal after targeting India (20261010T064500Z)
-- [gazettextra.com] AP News in Brief at 12 : 04 a . m . EDT (20261010T064500Z)
-- [woonsocketcall.com] AP News in Brief at 12 : 04 a . m . EDT (20261010T064500Z)
-- [newsandsentinel.com] Mid - Ohio Valley Climate Corner : Vote not just for climate , but affordability (20261010T064500Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
