@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-10-10T23:17:10.412002+00:00",
+  "scan_time": "2026-10-11T02:03:37.381709+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议",
       "event_datetime_utc_approx": "2026-10-28T14:00:00",
-      "hours_until": 446.0,
+      "hours_until": 422.0,
       "fomc": {
         "start": "2026-10-27",
         "end": "2026-10-28",
         "has_sep_dot_plot": false,
-        "days_until_decision": 18
+        "days_until_decision": 17
       },
       "next_nfp": "2026-11-06",
       "cpi": {
@@ -42,8 +42,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": 0.0,
-    "risk_level": "平稳"
+    "score": -0.3,
+    "risk_level": "中"
   },
   "results": []
 }
