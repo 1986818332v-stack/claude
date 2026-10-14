@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-14T01:19:36.734921+00:00
+生成时间(UTC): 2026-10-14T06:30:38.087666+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 350.0 小时
@@ -9,7 +9,7 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Strive reports $208M in warrant exercises as Bitcoin holdings jump 11%; Anthropic warns ‘AI worms’ may autonomously spread across devices like a virus
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Bitcoin climbs toward $84,000 after Fed’s Williams sees no rate hikes in 2027; Strive reports $208M in warrant exercises as Bitcoin holdings jump 11%
 
 - 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
