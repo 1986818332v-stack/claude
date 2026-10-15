@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-15T14:41:43.693235+00:00
+生成时间(UTC): 2026-10-15T18:53:33.851246+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 326.0 小时
@@ -9,15 +9,9 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.18)
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.4)
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [coastalcourier.com] Dick Yarbrough : No debate on who the best candidate is - Coastal Courier (20261015T141500Z)
-- [timescall.com] Wholesale inflation jumped last month by most in four years (20261015T141500Z)
-- [dailyadvance.com] The Latest : AP - NORC poll : Strong majority of voters believes Trump is failing at home and abroad (20261015T141500Z)
-- [dailycamera.com] Wholesale inflation jumped last month by most in four years (20261015T141500Z)
-- [prospect.org] In Nebraska , Pete Ricketts Was a Data Center Best Friend (20261015T141500Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
