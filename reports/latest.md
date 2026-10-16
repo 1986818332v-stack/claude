@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-16T18:38:35.696774+00:00
+生成时间(UTC): 2026-10-16T21:55:44.081789+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 302.0 小时
@@ -9,9 +9,15 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: -0.07)
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Quantum Alliance forms amid warnings 6.4 million bitcoin face future quantum threat; Altcoins outpace bitcoin as celestia jumps 16%, Warsh silent on interest-rate plans
 
-- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
+**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
+- [wyomingnews.com] Fed chair Warsh says price stability is key but shies away from signals about rates (20261016T213000Z)
+- [bostonglobe.com] Fed chair Warsh says price stability is key but shies away from signals about rates (20261016T213000Z)
+- [thenorthlines.com] U . S Secretary of State Marco Rubio visit to India is aimed to clinch trade deal (20261016T213000Z)
+- [capitolfax.com] Capitol Fax . com - Your Illinois News Radar » Isabel afternoon roundup (20261016T211500Z)
+- [foxreno.com] Inflation next wave could be building as energy costs spread through economy (20261016T211500Z)
+> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
