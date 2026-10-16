@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-16T04:49:32.334074+00:00
+生成时间(UTC): 2026-10-16T09:31:11.041812+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 302.0 小时
@@ -9,14 +9,14 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Under pressure, Ledger unveils plan to turn its crypto hardware wallet into a smartphone
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: -0.11)
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [newyorkstatesman.com]   Disgusting and despicable : Vance warns against selling White House access (20261016T043000Z)
-- [greekherald.com]   Disgusting and despicable : Vance warns against selling White House access (20261016T043000Z)
-- [tucsonpost.com]   Disgusting and despicable : Vance warns against selling White House access (20261016T043000Z)
-- [inosmi.ru] Анализ структурного кризиса мировой капиталистической системы и геополитический смысл сопротивления Ирана ( Mashregh , Иран )  (20261016T043000Z)
-- [hongkongherald.com]   Disgusting and despicable : Vance warns against selling White House access (20261016T043000Z)
+- [wisn.com] Cyberattack disrupts European supermarkets (20261016T090000Z)
+- [hurriyetdailynews.com] Fed Warsh surprised by world economy  resilience   (20261016T090000Z)
+- [bankingnews.gr] Με στηρίξεις από τράπεζες ανοδικά το ΧΑ +0 , 79 % στις 2 . 602 μον . – Στο επίκεντρο τεχνολογία , γεωπολιτικά και ο τζίρος της αγοράς (20261016T090000Z)
+- [livemint.com] US Fed rate hike buzz : American inflation highest since COVID what does it mean for Nifty , Sensex , gold rates ? Decoded (20261016T090000Z)
+- [bankingnews.gr] Με στηρίξεις από τράπεζες ανοδικά το ΧΑ +0 , 79 % στις 2 . 602 μον . – Στο επίκεντρο τεχνολογία , γεωπολιτικά και ο τζίρος της αγοράς (20261016T090000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
