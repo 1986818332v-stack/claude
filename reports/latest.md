@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-17T04:49:50.986613+00:00
+生成时间(UTC): 2026-10-17T09:01:48.646542+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 278.0 小时
@@ -11,13 +11,7 @@
 
 - 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Quantum Alliance forms amid warnings 6.4 million bitcoin face future quantum threat; Altcoins outpace bitcoin as celestia jumps 16%, Warsh silent on interest-rate plans
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [livehindustan.com] भारत पर घटेगा टैरिफ ? ट्रंप ने दिखाई नरमी , रूस से तेल खरीद पर कई प्रतिबंधों पर दी छूट (20261017T043000Z)
-- [coloradostar.com] Relief for India as Trump waives sanctions related to Russian fuel purchase under Lindsey Graham Act (20261017T043000Z)
-- [sconeadvocate.com.au] Trump waives many Russia - related sanctions and tariffs (20261017T043000Z)
-- [businesstoday.in] Trump pauses Russia linked tariffs threatening India and China : What it means for India (20261017T043000Z)
-- [bignewsnetwork.com]   Getting paid by Putin : Democrats criticise Trump waiver of sanctions under Lindsey Graham Act (20261017T043000Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
