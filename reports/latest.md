@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-17T13:05:38.692916+00:00
+生成时间(UTC): 2026-10-17T16:34:34.685248+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 278.0 小时
@@ -12,11 +12,11 @@
 - 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Quantum Alliance forms amid warnings 6.4 million bitcoin face future quantum threat; Altcoins outpace bitcoin as celestia jumps 16%, Warsh silent on interest-rate plans
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [mainichi.jp] ゼレンスキー氏 「 残念 」 米大統領 、 対露制裁法の実施見送りに (20261017T124500Z)
-- [fnnews.com] 트럼프 , 대러 제재 전격 유예 … 러  역사적 순간  환호 ( 종합 )  (20261017T124500Z)
-- [kenyastar.com] US tariff waiver on Russian crude a comforting relief , but trade uncertainties persist : CareEdge Chief Economist Rajani Sinha (20261017T124500Z)
-- [300polityka.pl] STAN GRY : Szacki i Piedziuk : Mentzen może woleć rządzić z Tuskiem , Protaziuk : Czy PiS znów postawi na Beatę Szydło ?  (20261017T124500Z)
-- [dailybulletin.com] Vance cant define socialism because he agrees with its core premise – Daily Bulletin (20261017T124500Z)
+- [theepochtimes.com] Brent Crude Oil Touches $110 Per Barrel (20261017T161500Z)
+- [cnbc.com] Trump student loan changes may spike bankruptcy filings : Former judge (20261017T161500Z)
+- [naftemporiki.gr]  « Καμπανάκι » από πρώην δικαστή για νόμο Τραμπ για τα φοιτητικά δάνεια : Μπορεί να οδηγήσει σε περισσότερες αιτήσεις πτώχευσης (20261017T153000Z)
+- [sbsun.com] Vance cant define socialism because he agrees with its core premise – San Bernardino Sun (20261017T153000Z)
+- [aljazeera.com] US and Iran both claim control of Strait of Hormuz amid attacks on vessels (20261017T153000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
