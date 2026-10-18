@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-18T03:20:36.317425+00:00
+生成时间(UTC): 2026-10-18T08:15:16.491141+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 254.0 小时
@@ -12,11 +12,11 @@
 - 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Quantum Alliance forms amid warnings 6.4 million bitcoin face future quantum threat; Altcoins outpace bitcoin as celestia jumps 16%, Warsh silent on interest-rate plans
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [hindustantimes.com] Republican lawmaker hits out at Trump over Russia sanctions waiver , says he is  prolonging the war , not ending it   (20261018T030000Z)
-- [foxnews.com] JD Vance claims US has destroyed Iran nuclear program at town hall (20261018T030000Z)
-- [cbsnews.com] 7 highlights from JD Vance CBS News town hall : Iran , immigration , corruption and 2028 plans (20261018T030000Z)
-- [newsbusters.org] CBS Dismisses El - Sayed Muslim Brotherhood Claims as NBC Presses for Answers (20261018T013000Z)
-- [digitaljournal.com] Leaders weigh  huge benefit , risks of AI for global economy (20261018T013000Z)
+- [therecord.com] Vance faces tough questions on Iran war , immigration and more in CBS town hall (20261018T070000Z)
+- [nvdaily.com] Vance faces tough questions on Iran war , immigration and more in CBS town hall (20261018T070000Z)
+- [article.wn.com] Trump 60 - day Russia sanctions waiver offers India tariff relief (20261018T063000Z)
+- [livemint.com] Japanese Sumitomo Mitsui Banking Corporation leases 50 , 000 sq ft office space in Mumbai BKC for ₹189 crore (20261018T063000Z)
+- [article.wn.com] Trump seeks 60 days to weigh Russia sanctions , tariff impact (20261018T063000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
