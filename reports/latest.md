@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-18T08:15:16.491141+00:00
+生成时间(UTC): 2026-10-18T12:43:53.179562+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 254.0 小时
@@ -9,14 +9,14 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30; Quantum Alliance forms amid warnings 6.4 million bitcoin face future quantum threat; Altcoins outpace bitcoin as celestia jumps 16%, Warsh silent on interest-rate plans
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.52)
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [therecord.com] Vance faces tough questions on Iran war , immigration and more in CBS town hall (20261018T070000Z)
-- [nvdaily.com] Vance faces tough questions on Iran war , immigration and more in CBS town hall (20261018T070000Z)
-- [article.wn.com] Trump 60 - day Russia sanctions waiver offers India tariff relief (20261018T063000Z)
-- [livemint.com] Japanese Sumitomo Mitsui Banking Corporation leases 50 , 000 sq ft office space in Mumbai BKC for ₹189 crore (20261018T063000Z)
-- [article.wn.com] Trump seeks 60 days to weigh Russia sanctions , tariff impact (20261018T063000Z)
+- [econotimes.com] SEC Sets Oct . 20 Deadline for Comments on Crypto Offering Plan (20261018T120000Z)
+- [businessinsider.com] Costco Price Tracker : Mostly Steady , but Big Hikes on Oil and Protein (20261018T103000Z)
+- [pakistanlink.org] News (20261018T103000Z)
+- [dailysabah.com] US consumers withstand rising prices , but for how long ?  (20261018T103000Z)
+- [newstomato.com] 불어나는  트럼프 청구서 … 15 % 관세까지 흔든다 (20261018T100000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
