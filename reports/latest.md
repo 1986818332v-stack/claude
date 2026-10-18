@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-18T12:43:53.179562+00:00
+生成时间(UTC): 2026-10-18T16:22:52.495532+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 254.0 小时
@@ -9,15 +9,9 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.52)
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.7)
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [econotimes.com] SEC Sets Oct . 20 Deadline for Comments on Crypto Offering Plan (20261018T120000Z)
-- [businessinsider.com] Costco Price Tracker : Mostly Steady , but Big Hikes on Oil and Protein (20261018T103000Z)
-- [pakistanlink.org] News (20261018T103000Z)
-- [dailysabah.com] US consumers withstand rising prices , but for how long ?  (20261018T103000Z)
-- [newstomato.com] 불어나는  트럼프 청구서 … 15 % 관세까지 흔든다 (20261018T100000Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
