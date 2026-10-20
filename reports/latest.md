@@ -1,8 +1,8 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-19T21:20:53.169577+00:00
+生成时间(UTC): 2026-10-20T00:30:54.556004+00:00
 
 ## 宏观背景
-- 最近宏观风险事件: **FOMC利率决议**,距离约 230.0 小时
+- 最近宏观风险事件: **FOMC利率决议**,距离约 206.0 小时
 - CPI 预计发布窗口(粗略): 2026-10-10 ~ 2026-10-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF资金流: 数据暂不可用(页面未解析出任何<table>结构(收到HTML长度0字符,若长度异常小可能是被反爬机制拦截返回了挑战页,而非真实表格页面),未编造数字)
 - ETH现货ETF资金流: 数据暂不可用(页面未解析出任何<table>结构(收到HTML长度0字符,若长度异常小可能是被反爬机制拦截返回了挑战页,而非真实表格页面))
@@ -11,13 +11,7 @@
 
 - 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **低**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [wtaq.com] Gov . Evers Blasts Trump Administration for Jeopardizing Millions of Dollars in Support for Wisconsin Dairy Farmers , Cheesemakers , and Processors (20261019T204500Z)
-- [newspressnow.com] How Import Tariffs Could Impact Nebraska Grocery Bills (20261019T204500Z)
-- [newspressnow.com] How Import Tariffs Could Impact Kansas Grocery Bills (20261019T204500Z)
-- [kenyastar.com] Industry leaders optimistic after Rubio remarks on India - US trade deal finalisation (20261019T204500Z)
-- [bozemandailychronicle.com] Chronicle Q & A : Senate hopefuls offer different takes in crowded race (20261019T203000Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
