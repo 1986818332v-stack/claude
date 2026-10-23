@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-23T01:15:24.155278+00:00
+生成时间(UTC): 2026-10-23T06:19:02.654942+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 134.0 小时
@@ -11,7 +11,13 @@
 
 - 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **低**,相关标题示例: Binance Exchange Adds Adobe (ADBEB), Forward Industries (FWDIB), Hewlett Packard (HPEB), PDD Holdings (PDDB), SharonAI (SHAZB), Wendy's (WENB) and Zoom (ZMB) bStocks Trading Pairs on Binance Spot/Convert - 2026-09-30
 
-- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
+**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
+- [jiji.com] 経済安全保障は国際秩序のカギ 主役は企業 、 プレーヤーは経営者 細川昌彦エコノセック実行委員長インタビュー 【 ＥＣＯＮＯＳＥＣ ＪＡＰＡＮ 】： 時事ドットコム (20261023T060000Z)
+- [sb.by] От белорусских СЭЗ до российских ОЭЗ : как бизнес выбирает площадку для проекта (20261023T060000Z)
+- [moneycontrol.com] From tech giants to anonymous nonprofits , the biggest donors in US midterms (20261023T050000Z)
+- [investinglive.com] investingLive Asia - Pacific market news : Asian stocks slide as chip rout spreads (20261023T050000Z)
+- [birminghamtimes.com]   You Owe the People of Alabama Some Answer : In Solo Virtual Debate , Doug Jones Makes Direct Address to Tommy Tuberville (20261023T050000Z)
+> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
