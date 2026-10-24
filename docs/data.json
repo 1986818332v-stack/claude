@@ -1,5 +1,86 @@
 {
-  "scan_time": "2026-10-24T06:54:42.195351+00:00",
+  "scan_time": "2026-10-24T11:52:11.341942+00:00",
   "portfolio_warning": null,
-  "items": []
+  "items": [
+    {
+      "symbol": "ORDERUSDT",
+      "direction": "偏多",
+      "score": 30.01,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "TREEUSDT",
+      "direction": "偏多",
+      "score": 28.12,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "AKEUSDT",
+      "direction": "偏空",
+      "score": -25.18,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "INJUSDT",
+      "direction": "偏空",
+      "score": -24.04,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "OPUSDT",
+      "direction": "偏空",
+      "score": -22.3,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "WIFUSDT",
+      "direction": "偏空",
+      "score": -22.09,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "MAGMAUSDT",
+      "direction": "偏空",
+      "score": -19.95,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "NEARUSDT",
+      "direction": "偏空",
+      "score": -19.39,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 1
+    },
+    {
+      "symbol": "TAOUSDT",
+      "direction": "偏空",
+      "score": -19.23,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    },
+    {
+      "symbol": "SOLUSDT",
+      "direction": "偏空",
+      "score": -18.28,
+      "confidence": "低",
+      "phase": "阶段特征不明显",
+      "num_plans": 0
+    }
+  ]
 }
