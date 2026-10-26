@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-26T12:22:23.119970+00:00
+生成时间(UTC): 2026-10-26T18:48:28.899444+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 62.0 小时
@@ -10,7 +10,7 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: -0.09)
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Musk warns over 200 AI neoclouds face ‘guppy-level death’; Keystone says website breach exposed hardware wallet buyers’ addresses
 
 - 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
