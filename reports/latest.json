@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-10-26T23:02:21.273765+00:00",
+  "scan_time": "2026-10-27T02:18:13.962959+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议",
       "event_datetime_utc_approx": "2026-10-28T14:00:00",
-      "hours_until": 62.0,
+      "hours_until": 38.0,
       "fomc": {
         "start": "2026-10-27",
         "end": "2026-10-28",
         "has_sep_dot_plot": false,
-        "days_until_decision": 2
+        "days_until_decision": 1
       },
       "next_nfp": "2026-11-06",
       "cpi": {
@@ -33,7 +33,7 @@
     },
     "eth_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 12748.0,
+      "cumulative_total_flow_musd": 12764.0,
       "latest_day_flow_musd": -465.1,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/eth/"
@@ -47,7 +47,7 @@
   },
   "geopolitical_risk": {
     "score": 0.0,
-    "risk_level": "低"
+    "risk_level": "平稳"
   },
   "results": []
 }
