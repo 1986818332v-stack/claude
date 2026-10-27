@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-10-27T02:18:13.962959+00:00",
+  "scan_time": "2026-10-27T08:13:13.630070+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "FOMC利率决议",
@@ -26,14 +26,14 @@
     },
     "btc_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 57251.0,
+      "cumulative_total_flow_musd": 57361.0,
       "latest_day_flow_musd": -1113.7,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/btc/"
     },
     "eth_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 12764.0,
+      "cumulative_total_flow_musd": 12659.0,
       "latest_day_flow_musd": -465.1,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/eth/"
