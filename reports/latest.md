@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-10-28T17:00:04.460537+00:00
+生成时间(UTC): 2026-10-28T21:36:37.710141+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **FOMC利率决议**,距离约 14.0 小时
@@ -10,7 +10,7 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **低**,相关标题示例: Robinhood’s Tenev warns US tokenization uncertainty deters ‘serious assets’
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Bitcoin-backed mortgages are coming to Canada, but borrowers are still unaware of the cost; Robinhood’s Tenev warns US tokenization uncertainty deters ‘serious assets’
 
 - 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
