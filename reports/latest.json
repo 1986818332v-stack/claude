@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-10-30T00:08:51.886675+00:00",
+  "scan_time": "2026-10-30T06:13:51.791153+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
@@ -25,13 +25,15 @@
       "available": false
     },
     "btc_etf": {
-      "available": false,
-      "reason": "页面未解析出任何<table>结构(收到HTML长度0字符,若长度异常小可能是被反爬机制拦截返回了挑战页,而非真实表格页面)",
+      "available": true,
+      "cumulative_total_flow_musd": 57691.0,
+      "latest_day_flow_musd": -1113.7,
+      "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/btc/"
     },
     "eth_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 12556.0,
+      "cumulative_total_flow_musd": 12472.0,
       "latest_day_flow_musd": -465.1,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/eth/"
@@ -44,8 +46,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": -0.3,
-    "risk_level": "中"
+    "score": 0.0,
+    "risk_level": "低"
   },
   "results": []
 }
