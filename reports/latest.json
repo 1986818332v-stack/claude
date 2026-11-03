@@ -1,15 +1,15 @@
 {
-  "scan_time": "2026-11-02T22:25:01.113609+00:00",
+  "scan_time": "2026-11-03T03:36:38.149305+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
       "event_datetime_utc_approx": "2026-11-06T08:30:00",
-      "hours_until": 104.5,
+      "hours_until": 80.5,
       "fomc": {
         "start": "2026-12-08",
         "end": "2026-12-09",
         "has_sep_dot_plot": true,
-        "days_until_decision": 37
+        "days_until_decision": 36
       },
       "next_nfp": "2026-11-06",
       "cpi": {
@@ -25,17 +25,13 @@
       "available": false
     },
     "btc_etf": {
-      "available": true,
-      "cumulative_total_flow_musd": 57048.0,
-      "latest_day_flow_musd": -1113.7,
-      "latest_day_label": "Minimum",
+      "available": false,
+      "reason": "页面未解析出任何<table>结构(收到HTML长度0字符,若长度异常小可能是被反爬机制拦截返回了挑战页,而非真实表格页面)",
       "source": "https://farside.co.uk/btc/"
     },
     "eth_etf": {
-      "available": true,
-      "cumulative_total_flow_musd": 12316.0,
-      "latest_day_flow_musd": -465.1,
-      "latest_day_label": "Minimum",
+      "available": false,
+      "reason": "页面未解析出任何<table>结构(收到HTML长度0字符,若长度异常小可能是被反爬机制拦截返回了挑战页,而非真实表格页面)",
       "source": "https://farside.co.uk/eth/"
     }
   },
