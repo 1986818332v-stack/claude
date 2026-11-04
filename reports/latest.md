@@ -1,16 +1,16 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-04T00:05:48.265499+00:00
+生成时间(UTC): 2026-11-04T06:51:43.564918+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 56.5 小时
 - CPI 预计发布窗口(粗略): 2026-11-10 ~ 2026-11-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF最近一日净流入: -1113.7M USD(Minimum)
-- BTC现货ETF累计净流入: 56622.0M USD
+- BTC现货ETF累计净流入: 56534.0M USD
 - ETH现货ETF最近一日净流入: -465.1M USD(Minimum)
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Justin Sun seeks sanctions against Trump-linked World Liberty Financial over UAE ties; CZ warns of more AI-driven hacks following Binance’s historic $6.3 billion heist
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Democrats surge toward Senate, House majorities, with crypto braced for new direction; Justin Sun seeks sanctions against Trump-linked World Liberty Financial over UAE ties
 
 - 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
