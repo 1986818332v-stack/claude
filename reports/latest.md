@@ -1,23 +1,23 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-06T03:32:30.178438+00:00
+生成时间(UTC): 2026-11-06T11:51:05.167971+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 8.5 小时
 - CPI 预计发布窗口(粗略): 2026-11-10 ~ 2026-11-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF最近一日净流入: -1113.7M USD(Minimum)
-- BTC现货ETF累计净流入: 56283.0M USD
+- BTC现货ETF累计净流入: 56178.0M USD
 - ETH现货ETF最近一日净流入: -465.1M USD(Minimum)
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Crypto for Advisors: Where investors stake crypto shapes how much of the reward they keep; Kraken parent Payward and its clients buy AAVE tokens in DeFi investment push; Binance cuts SignalPlus access after security warning, urges users to check accounts
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Crypto for Advisors: Where investors stake crypto shapes how much of the reward they keep; Kraken parent Payward and its clients buy AAVE tokens in DeFi investment push
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [willistonherald.com] Nasdaq posts biggest daily drop in 19 months on fears of AI regulations (20261106T030000Z)
-- [chunichi.co.jp] 与党大敗も 「 関税継続 」 を主張 トランプ氏 、 看板政策固執 ： 中日新聞Web (20261106T030000Z)
-- [newspim.com] 美 중간선거발  블루웨이브 … 월가 투자 지형 바꿀 5대 자금 이동 (20261106T030000Z)
-- [kbtx.com] A brutal sell - off for AI stocks sends Wall Street reeling ; S & P 500 sees worst day since 2025  Liberation Day  tariffs (20261106T030000Z)
-- [aol.com] Trump agenda likely to be curbed with Democrats in charge (20261106T030000Z)
+- [fingerlakes1.com] Schumer , Gillibrand put lower costs and Trump oversight atop post - election agenda (20261106T113000Z)
+- [rollcall.com] Foster bill would bolster tech use to monitor AI financial risks (20261106T113000Z)
+- [countercurrents.org] No Kings in America . But What About India ?  (20261106T113000Z)
+- [vesti.bg]  „ Синята вълна  срина борсите : Как изборите в САЩ изтриха трилиони долари от акциите на изкуствения интелект (20261106T113000Z)
+- [newspim.com]  [ 코인 시황 ] 비트코인 일시 7만6000달러 붕괴 … 美 기술주 폭락에 암호화폐 시장도 급락 (20261106T113000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
