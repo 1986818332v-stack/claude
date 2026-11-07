@@ -1,23 +1,23 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-06T23:40:58.573075+00:00
+生成时间(UTC): 2026-11-07T04:54:40.209877+00:00
 
 ## 宏观背景
-- 最近宏观风险事件: **非农就业数据(NFP)**,距离约 8.5 小时
+- 最近宏观风险事件: **非农就业数据(NFP)**,距离约 656.5 小时
 - CPI 预计发布窗口(粗略): 2026-11-10 ~ 2026-11-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF最近一日净流入: -1113.7M USD(Minimum)
-- BTC现货ETF累计净流入: 56167.0M USD
+- BTC现货ETF累计净流入: 55766.0M USD
 - ETH现货ETF最近一日净流入: -465.1M USD(Minimum)
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **低**,相关标题示例: Binance hack is ‘cyber war,’ TRM Labs executive says
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: -0.08)
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [wcfcourier.com] Your Call the Courier questions answered for Nov . 7 , 2026 (20261106T123000Z)
-- [finchannel.com] Nvidia H200 chips await China approval in Hong Kong , Reuters reports (20261106T123000Z)
-- [theglobeandmail.com] Trump Media investors lost $2 . 2 - billion while Trump holds $460 - million stake (20261106T123000Z)
-- [aol.com] Trump Media investors lost $2 . 2 billion while Trump holds $460 million stake (20261106T120000Z)
-- [aol.com] As tech swoon roils market , US inflation data on tap (20261106T120000Z)
+- [lufkindailynews.com] Lawyer for Fed Cook seeks clarity ahead of any White House hearing (20261107T020000Z)
+- [kcby.com] Wall Street wild ride : What the market volatility means for your money (20261107T020000Z)
+- [therecord.com] Carney says Canada welcomes  any move to restore free trade after U . S . midterms (20261107T020000Z)
+- [kfdm.com] Wall Street wild ride : What the market volatility means for your money (20261107T010000Z)
+- [midmichigannow.com] Wall Street wild ride : What the market volatility means for your money (20261107T010000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
