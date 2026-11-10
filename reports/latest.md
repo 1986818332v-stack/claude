@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-10T11:32:31.802332+00:00
+生成时间(UTC): 2026-11-10T19:23:43.170162+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 584.5 小时
@@ -10,15 +10,9 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Bitcoin faces U.S. CPI test as analysts warn inflation relief may not be enough; Binance warns iOS flaw could expose crypto wallet keys
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Poland’s lower house backs sanctions bill covering crypto freezes; Binance warns iOS flaw could expose crypto wallet keys
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [kenyastar.com] Americans are (20261110T060000Z)
-- [irishtimes.com] Backing required to develop export potential of Irish beer , whiskey and other drinks (20261110T060000Z)
-- [inosmi.ru] Пять оставшихся у Трампа способов изменить мир ( Bloomberg , США )  (20261110T053000Z)
-- [bignewsnetwork.com] China extends suspension of 24 % additional tariff on US goods for two months , retains 10 % levy (20261110T053000Z)
-- [livemint.com] Who is Anna Konidala of Russia ? What Pawan Kalyan shared on WhatsApp group on parting ways (20261110T050000Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
