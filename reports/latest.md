@@ -1,23 +1,23 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-09T20:57:15.699595+00:00
+生成时间(UTC): 2026-11-10T03:20:41.921389+00:00
 
 ## 宏观背景
-- 最近宏观风险事件: **非农就业数据(NFP)**,距离约 608.5 小时
+- 最近宏观风险事件: **非农就业数据(NFP)**,距离约 584.5 小时
 - CPI 预计发布窗口(粗略): 2026-11-10 ~ 2026-11-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF最近一日净流入: -1113.7M USD(Minimum)
-- BTC现货ETF累计净流入: 55766.0M USD
+- BTC现货ETF累计净流入: 55779.0M USD
 - ETH现货ETF最近一日净流入: -465.1M USD(Minimum)
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **低**
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: -0.24)
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [prokerala.com] Rupee gains 25 paise against US dollar on lower crude , positive global cues (20261109T070000Z)
-- [mangalorean.com] Trump says renewed strikes on Iran  highly unlikely  if talks progress (20261109T070000Z)
-- [actionforex.com] A Bruising Week for the Australian Dollar (20261109T070000Z)
-- [deccanchronicle.com] Trump Elevates Stephen Miller , Signals Hardline Final Two Years (20261109T070000Z)
-- [nbcwashington.com] Trump says deportations were  too tough , hurt him during midterms – NBC4 Washington (20261109T063000Z)
+- [kitco.com] Gold , silver advance as dollar weakens , Fed rate expectations face inflation test - Kitco PM Report (20261110T030000Z)
+- [tcbmag.com] Minnesota Loses Clout on Senate and House Ag Committees (20261110T023000Z)
+- [econotimes.com] S & P 500 Records Its Biggest One - Day Gain in Seven Months as Oil Falls (20261110T023000Z)
+- [plant.ca] Weathering the storm : A manufacturer guide to the end of 2026 and beyond (20261110T020000Z)
+- [asianews.network] US President Trump midterm humbling offers little relief for Southeast Asian exporters – Asia News Network (20261110T020000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
