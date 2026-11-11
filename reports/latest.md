@@ -1,8 +1,8 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-10T19:23:43.170162+00:00
+生成时间(UTC): 2026-11-11T00:10:55.643329+00:00
 
 ## 宏观背景
-- 最近宏观风险事件: **非农就业数据(NFP)**,距离约 584.5 小时
+- 最近宏观风险事件: **非农就业数据(NFP)**,距离约 560.5 小时
 - CPI 预计发布窗口(粗略): 2026-11-10 ~ 2026-11-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF最近一日净流入: -1113.7M USD(Minimum)
 - BTC现货ETF累计净流入: 55565.0M USD
@@ -10,9 +10,15 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Poland’s lower house backs sanctions bill covering crypto freezes; Binance warns iOS flaw could expose crypto wallet keys
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.07)
 
-- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
+**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
+- [katu.com] Larger series of interest rate hikes more likely after hot October CPI (20261110T220000Z)
+- [goskagit.com] The Latest : Hegseth slams his potential impeachment as a  political spectacle  as House vote looms | Politics & Elections (20261110T220000Z)
+- [newsroomamerica.com] newsroomamerica . com (20261110T220000Z)
+- [goskagit.com] US stocks slip following a discouraging update on inflation (20261110T220000Z)
+- [kpic.com] Larger series of interest rate hikes more likely after hot October CPI (20261110T220000Z)
+> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
