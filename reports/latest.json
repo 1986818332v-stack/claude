@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-11-11T00:10:55.643329+00:00",
+  "scan_time": "2026-11-11T06:56:05.261870+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
@@ -26,7 +26,7 @@
     },
     "btc_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 55565.0,
+      "cumulative_total_flow_musd": 55470.0,
       "latest_day_flow_musd": -1113.7,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/btc/"
