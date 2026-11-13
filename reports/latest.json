@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-11-12T18:42:31.561263+00:00",
+  "scan_time": "2026-11-12T23:58:43.384478+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
@@ -33,7 +33,7 @@
     },
     "eth_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 11620.0,
+      "cumulative_total_flow_musd": 11614.0,
       "latest_day_flow_musd": -465.1,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/eth/"
