@@ -1,5 +1,5 @@
 {
-  "scan_time": "2026-11-13T06:23:33.235041+00:00",
+  "scan_time": "2026-11-13T14:48:12.967752+00:00",
   "macro_context": {
     "macro_risk": {
       "nearest_event": "非农就业数据(NFP)",
@@ -26,14 +26,14 @@
     },
     "btc_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 55123.0,
+      "cumulative_total_flow_musd": 54887.0,
       "latest_day_flow_musd": -1113.7,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/btc/"
     },
     "eth_etf": {
       "available": true,
-      "cumulative_total_flow_musd": 11612.0,
+      "cumulative_total_flow_musd": 11550.0,
       "latest_day_flow_musd": -465.1,
       "latest_day_label": "Minimum",
       "source": "https://farside.co.uk/eth/"
@@ -46,8 +46,8 @@
     "sector_clusters": {}
   },
   "geopolitical_risk": {
-    "score": -0.15,
-    "risk_level": "低"
+    "score": -0.3,
+    "risk_level": "中"
   },
   "results": []
 }
