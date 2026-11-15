@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-15T06:57:35.089753+00:00
+生成时间(UTC): 2026-11-15T14:38:23.226838+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 464.5 小时
@@ -10,15 +10,9 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: U.S. Senate Banking Committee races toward hearing on new SEC nominations; Kraken parent Payward says expansion outside crypto trading helps cushion revenue decline; Kraken parent Payward gains market share as slower trading weighs on earnings
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: U.S. Senate Banking Committee races toward hearing on new SEC nominations; Kraken parent Payward says expansion outside crypto trading helps cushion revenue decline; Coinone warns of phishing, identity theft after customer data breach
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [oberonreview.com.au] Mark Kenny | Can Labor find its mojo ? | Oberon Review (20261114T210000Z)
-- [mandurahmail.com.au] PM to highlight Philippines ties ahead of Trump meeting (20261114T210000Z)
-- [mandurahmail.com.au] Mark Kenny | Can Labor find its mojo ? | Mandurah Mail (20261114T210000Z)
-- [gleninnesexaminer.com.au] Mark Kenny | Can Labor find its mojo ? | Glen Innes Examiner (20261114T210000Z)
-- [redlandcitybulletin.com.au] PM to highlight Philippines ties ahead of Trump meeting (20261114T210000Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
