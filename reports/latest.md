@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-16T00:11:20.007478+00:00
+生成时间(UTC): 2026-11-16T07:03:40.170551+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 440.5 小时
@@ -10,12 +10,9 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.37)
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Cardano holders vote down $5 million bid to buy warehouse copper; Luxor CEO warns of AI ‘dark forest’ following Bitcoin miner hijack; Coinone warns of phishing, identity theft after customer data breach
 
-**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [thehitavada.com] India - US trade pact approaching  finishing line , says Jaishankar (20261115T074500Z)
-- [nagalandpost.com] India - US trade deal could be sealed  soon : Jaishankar (20261115T074500Z)
-> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
+- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
