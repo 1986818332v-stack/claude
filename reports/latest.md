@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-18T08:54:07.334391+00:00
+生成时间(UTC): 2026-11-18T17:49:35.457008+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 392.5 小时
@@ -10,7 +10,7 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Druckenmiller says he is short copper, warns of economic weakness in 2027; Ledger hardware implant saga reaches Dubai’s Virgin Megastore; Fed’s Waller cites Binance hack in warning over tokenized finance
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Strategy stock could plunge 76% to $23, chart analyst warns; Sanctions fears loom over Russia’s regulated crypto trading launch; Ledger hardware implant saga reaches Dubai’s Virgin Megastore
 
 - 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
 
