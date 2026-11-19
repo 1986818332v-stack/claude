@@ -1,21 +1,23 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-19T16:21:12.395113+00:00
+生成时间(UTC): 2026-11-19T23:09:17.395845+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 368.5 小时
 - CPI 预计发布窗口(粗略): 2026-11-10 ~ 2026-11-15  _(CPI精确日期未在config.CPI_RELEASE_DATES_KNOWN中维护,建议核对BLS官网后补充)_
 - BTC现货ETF最近一日净流入: -1113.7M USD(Minimum)
-- BTC现货ETF累计净流入: 54163.0M USD
+- BTC现货ETF累计净流入: 54149.0M USD
 - ETH现货ETF最近一日净流入: -465.1M USD(Minimum)
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Financial firms must act now as quantum computers grow ‘highly advanced,’ IOSCO warns; Bitcoin miner that sold its last BTC warns it may run short of cash for $1.2 billion AI deal; IOSCO warns quantum upgrades could slow blockchains, leave security gaps
+- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: -0.84)
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [newsradiori.iheart.com] President Touts Trade Deal With Philippines | News Radio 920 AM & 104 . 7 FM (20261118T173000Z)
-- [wmeq.iheart.com] President Touts Trade Deal With Philippines | NewsTalk WMEQ (20261118T173000Z)
-- [1450wkip.iheart.com] President Touts Trade Deal With Philippines | NewsRadio 1450 / 1370 WKIP (20261118T173000Z)
+- [newrepublic.com] House Democrats Love Hakeem Jeffries . But Does the Rank and File ?  (20261119T193000Z)
+- [wiadomosci.wp.pl] Trump , Putin i Xi ogłaszają deklarację . Limity zarobków dla lekarzy w Polsce [ SKRÓT DNIA ]  (20261119T193000Z)
+- [batemansbaypost.com.au] Tough act to follow : PM Xi meeting overshadowed (20261119T193000Z)
+- [newser.com] Students Sue After AI Gun Alert Over Doritos Bag (20261119T193000Z)
+- [parkrapidsenterprise.com] Chamber executives see business challenges , opportunities in midterm results (20261119T193000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
