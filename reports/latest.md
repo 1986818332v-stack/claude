@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-19T06:41:37.418307+00:00
+生成时间(UTC): 2026-11-19T16:21:12.395113+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 368.5 小时
@@ -10,9 +10,13 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Fed's push for more rate hikes leans on backward-looking data as gas prices slide, experts argue; Bitcoin miner that sold its last BTC warns it may run short of cash for $1.2 billion AI deal; Payward, the owner of crypto exchange Kraken, is buying its CEO’s venture capital business, Tribe
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **中**,相关标题示例: Financial firms must act now as quantum computers grow ‘highly advanced,’ IOSCO warns; Bitcoin miner that sold its last BTC warns it may run short of cash for $1.2 billion AI deal; IOSCO warns quantum upgrades could slow blockchains, leave security gaps
 
-- 特朗普相关言论监听: 本轮GDELT未返回相关报道或该数据源暂不可用
+**特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
+- [newsradiori.iheart.com] President Touts Trade Deal With Philippines | News Radio 920 AM & 104 . 7 FM (20261118T173000Z)
+- [wmeq.iheart.com] President Touts Trade Deal With Philippines | NewsTalk WMEQ (20261118T173000Z)
+- [1450wkip.iheart.com] President Touts Trade Deal With Philippines | NewsRadio 1450 / 1370 WKIP (20261118T173000Z)
+> 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
 本轮扫描未发现任何标的满足最低分析门槛。
