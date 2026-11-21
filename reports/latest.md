@@ -1,5 +1,5 @@
 # 机构级永续合约扫描报告
-生成时间(UTC): 2026-11-21T17:52:43.527017+00:00
+生成时间(UTC): 2026-11-21T22:49:34.378072+00:00
 
 ## 宏观背景
 - 最近宏观风险事件: **非农就业数据(NFP)**,距离约 320.5 小时
@@ -10,14 +10,14 @@
 
 > 说明:目前只有 BTC/ETH 有现货ETF与足够流动性的期权市场,这是市场现实而非抓取限制;若未来其他币种ETF/期权上市,只需在config.py扩展即可复用同一套逻辑。
 
-- 地缘政治风险信号(来源: GDELT新闻语气时间线): **平稳**(新闻语气变化值: 0.56)
+- 地缘政治风险信号(来源: RSS关键词近似(GDELT不可用时的备用方案)): **高**,相关标题示例: Ether treasury firm BTCS warns SEC its $54 million Aave loan could be liquidated; U.S. Senate passes bill to ban prediction market bets on war and death; ECB’s Lagarde warns Europe could lose control of growing tokenized asset market
 
 **特朗普相关言论监听(免费近似,来源GDELT全球媒体转述,非直接抓取其社交账号)**:
-- [thehindu.com] Gold , copper , aluminium dive to at least 7 - month lows (20261121T163000Z)
-- [livemint.com] Bitcoin price crash : ​Falls to lowest level in two years - What behind plunge of world largest cryptocurrency (20261121T163000Z)
-- [wboc.com] A 10 % drop for the stock market is unnerving , but it not that unusual (20261121T163000Z)
-- [africaleader.com] US panel says India balances security with economic needs amid Chinese pressure , flags supply - chain trade - offs (20261121T163000Z)
-- [canoncitydailyrecord.com] The economic crisis in Black America (20261121T163000Z)
+- [thepeterboroughexaminer.com] Trump vows to work with Democrats to cap credit card interest rates at 10 %  (20261121T203000Z)
+- [kob.com] A 10 % drop for the stock market is unnerving , but it not that unusual (20261121T203000Z)
+- [tribune.net.ph] Marathon diplomacy (20261121T203000Z)
+- [wdbo.com] Trump wants to work with Democrats to cap credit card interest rates (20261121T203000Z)
+- [fox5ny.com] Trump pledges to work with Democrats to cap credit card interest rates (20261121T203000Z)
 > 说明:这是新闻媒体对相关言论的转述报道,通常有几分钟到几十分钟延迟,无法做到社交媒体秒级抢跑,但对波段/日内交易时效性足够。
 
 ## 交易计划
